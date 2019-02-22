@@ -1,0 +1,11 @@
+<h1> Choose a Destination </h1>
+
+<%= form_for @destination do |f| %>
+  <%= f.label :country %><br>
+  <%= f.text_field :country %><br><br>
+  <%= f.label :state %><br>
+  <%= f.text_field :state %><br><br>
+
+  <%= f.submit "Create Destination" %>
+
+<%end%>
