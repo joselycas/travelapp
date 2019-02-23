@@ -1,0 +1,16 @@
+
+
+<h1> Hi, add your trip </h1>
+
+<%= form_for [@user, @trip] do |f| %>
+<%= f.hidden_field :user_id, :value => @user.id %>
+  <%= f.label :description %><br>
+  <%= f.text_field :description %><br><br>
+  <%= f.label :budget %><br>
+  <%= f.text_field :budget %><br><br>
+  <%= f.label :start_date %><br>
+  <%= f.text_field :start_date %><br><br>
+  <%= f.label :end_date %><br>
+  <%= f.text_field :end_date %><br><br>
+  <%= f.submit "Create Trip" %>
+<%end %>
