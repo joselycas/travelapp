@@ -11,7 +11,6 @@ class DestinationsController < ApplicationController
 
   def create
     @destination = Destination.create(destination_params)
-    binding.pry
     if @destination.save
       redirect_to destination_path(@destination)
     else
@@ -20,6 +19,7 @@ class DestinationsController < ApplicationController
   end
 
   def show
+    @destination = Destination.find(params[:id])
   end
 
   def edit

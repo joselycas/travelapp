@@ -55,6 +55,8 @@ group :development do
   gem 'pry-doc'
   gem 'omniauth-facebook', '~> 4.0'
   gem 'dotenv-rails'
+  gem 'omniauth'
+
 end
 
 group :test do
