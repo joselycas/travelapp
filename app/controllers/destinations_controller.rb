@@ -11,6 +11,7 @@ class DestinationsController < ApplicationController
 
   def create
     @destination = Destination.create(destination_params)
+    binding.pry
     if @destination.save
       redirect_to destination_path(@destination)
     else

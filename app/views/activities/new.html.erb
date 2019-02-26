@@ -1,6 +1,7 @@
 <h1> Create an activity </h1>
 
 <%= form_for @activity do |f| %>
+ <% f.hidden_field:trip_activities, :value => @activity.trip_activities_id %>
   <%= f.label :name %><br>
   <%= f.text_field :name %><br><br>
   <%= f.submit "Create Activity" %>

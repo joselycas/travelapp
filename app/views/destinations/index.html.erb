@@ -1,0 +1,6 @@
+<h1> List of your destinations </h1>
+<% @destinations.each do |destination| %>
+<%= destination.country %>
+<% end %>
+
+<h2><%= link_to "Add a destination", new_destination_path %> </h2>

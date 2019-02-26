@@ -1,0 +1,5 @@
+<h1><% @activities.each do |activity| %>
+  <%= link_to "edit #{activity.name}", edit_activity_path(activity) %><br>
+  <%end%>
+
+  <h2><%= link_to "see your destinations",  destinations_path %></h2>
