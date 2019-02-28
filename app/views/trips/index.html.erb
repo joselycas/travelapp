@@ -1,1 +1,5 @@
 <h1> Welcome to your trip tracker </h1>
+<% @trips.each do |trip| %>
+<%= trip.description %> - <%= trip.budget %><br>
+<%end%>
+<%= link_to "add a new trip", new_user_trip_path %>

@@ -1,5 +1,5 @@
 <h1>Hi, create an account to get started</h1>
-
+<p style="color:red;"><%= @user.errors.full_messages.first if @user.errors.any? %></p>
 <%= form_for @user do |f| %>
   <%= f.label :name %><br>
   <%= f.text_field :name %><br><br>
@@ -10,5 +10,4 @@
   <%= f.submit "Create Account" %>
 
 <%end%>
-
-#if errors? display errors messages
+<br><br>

@@ -10,14 +10,18 @@ class ActivitiesController < ApplicationController
   end
 
   def create
-      @activity = Activity.create(activity_params)
+      if logged_in? && current_user
+        @activity = Activity.create(activity_params)
+
         if @activity.save
           redirect_to activity_path(@activity)
         else
           flash[:error] = "Please make sure you fill in all fields"
           render :new
-      
-    end
+        end
+      else
+        flash[:notice] = "You don't have access!"
+     end
   end
 
   def show
@@ -26,17 +30,28 @@ class ActivitiesController < ApplicationController
   end
 
   def edit
+    @activity = Activity.find(params[:id])
   end
 
   def update
+    @activity = Activity.find(params[:id])
+    @activity.update(activity_params)
+    if @activity.save
+      redirect_to activity_path(@activity)
+    else
+      render :edit
+    end
   end
 
   def destroy
+    @user = current_user
+    Activity.find(params[:id]).destroy
+    redirect_to user_trips_path(@user)
   end
 
   private
 
   def activity_params
-    params.require(:activity).permit(:name)
+    params.require(:activity).permit(:name, :user_id)
   end
 end

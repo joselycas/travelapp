@@ -1,10 +1,9 @@
 class SessionsController < ApplicationController
 
   def signin
+
   end
 
-  def signout
-  end
 
   def create
     @user = User.find_or_create_by(uid: auth['uid']) do |u|
@@ -16,6 +15,11 @@ class SessionsController < ApplicationController
     render 'users/new'
   end
 
+  def destroy
+     User.find(session[:user_id]).destroy
+     session[:user_id] = nil
+     redirect_to root_path
+   end
   private
 
   def auth

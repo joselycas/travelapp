@@ -1,8 +1,6 @@
-<h1><%=@user.name %>, You've successfully added  <%= @activity.name %> for your trip to
-
-<% @user.trips.each do |trip| %>
-  <%= trip.description %>
-<%end%>!</h1>
-
-<h2><%= link_to "Back to trips", user_trips_path(@user, @trip) %> </h2>
-<h2><%= link_to "View all activities", activities_path %> </h2>
+<h1><%=@user.name %>, You've successfully added  <%= @activity.name %><br>
+  <%= link_to '<button type="button">Edit activity</button>'.html_safe, edit_activity_path(@activity) %>
+<%= form_tag activity_path(@activity.id), method: "delete" do %>
+  <%= submit_tag "Delete #{@activity.name}" %>
+  <%end%>
+<h2><%= link_to '<button type="button">Back to Trips</button>'.html_safe, user_trips_path(@user, @trip) %> </h2>

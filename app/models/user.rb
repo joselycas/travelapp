@@ -1,9 +1,8 @@
 class User < ApplicationRecord
   has_many :trips
-  has_many :destinations
-  has_many :activities
   validates :name, presence: true
   validates :email, uniqueness: true
+  validates_format_of :email,:with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
 
   def self.find_for_facebook_oauth(auth, signed_in_resource = nil)
     user = User.where(provider: auth.provider, uid: auth.uid).first
