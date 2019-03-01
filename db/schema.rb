@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_26_181137) do
+ActiveRecord::Schema.define(version: 2019_03_01_210620) do
 
   create_table "activities", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "trip_activities_id"
+    t.integer "destination_id"
+    t.integer "trip_id"
   end
 
   create_table "destinations", force: :cascade do |t|
@@ -25,15 +26,15 @@ ActiveRecord::Schema.define(version: 2019_02_26_181137) do
     t.integer "flight_cost"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "trip_id"
   end
 
-  create_table "trip_activities", force: :cascade do |t|
+  create_table "trip_destinations", force: :cascade do |t|
     t.integer "trip_id"
     t.integer "destination_id"
-    t.integer "activity_id"
-    t.integer "cost"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "cost"
   end
 
   create_table "trips", force: :cascade do |t|

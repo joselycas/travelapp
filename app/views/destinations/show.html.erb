@@ -1,7 +1,7 @@
 <h1> <%=@user.name%>, Here is your new destination:<br>
    <%= @destination.country.capitalize %> <%= @destination.state.capitalize %> </h1>
-<h2><%= link_to '<button type="button">Edit destination</button>'.html_safe, edit_destination_path %> </h2>
+<%= link_to '<button type="button">Edit destination</button>'.html_safe, edit_trip_destination_path %>
 <%= form_tag activity_path(@destination.id), method: "delete" do %>
   <%= submit_tag "Delete #{@destination.country}" %>
   <%end%>
-  <h2><%= link_to '<button type="button">Add Activities</button>'.html_safe, new_activity_path %> </h2>
+  <%= link_to '<button type="button">Add Activities</button>'.html_safe, new_activity_path %>

@@ -1,8 +1,8 @@
 class ActivitiesController < ApplicationController
 
   def index
+    @user = current_user
     @activities = Activity.all
-
   end
 
   def new
@@ -12,12 +12,12 @@ class ActivitiesController < ApplicationController
   def create
       if logged_in? && current_user
         @activity = Activity.create(activity_params)
-
         if @activity.save
           redirect_to activity_path(@activity)
         else
           flash[:error] = "Please make sure you fill in all fields"
           render :new
+      
         end
       else
         flash[:notice] = "You don't have access!"
@@ -52,6 +52,6 @@ class ActivitiesController < ApplicationController
   private
 
   def activity_params
-    params.require(:activity).permit(:name, :user_id)
+    params.require(:activity).permit(:name, :destination_id, :trip_id)
   end
 end

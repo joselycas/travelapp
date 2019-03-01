@@ -2,18 +2,27 @@
 class DestinationsController < ApplicationController
 
   def index
+    @user = current_user
     @destinations = Destination.all
+    # if params[:club_id]
+    #     @fighters = Club.find(params[:club_id]).includes(:clubs).fighters
+    # else
+    #     @fighters = Fighter.all
+    # end
   end
 
   def new
-    @destination = Destination.new
+    @trip = Trip.find(params[:trip_id])
+    @destination = @trip.destinations.build
   end
 
   def create
       if logged_in? && current_user
+      @trip = Trip.find(params[:trip_id])
       @destination = Destination.create(destination_params)
+
         if @destination.save
-          redirect_to destination_path(@destination)
+          redirect_to trip_destination_path(@trip, @destination)
         else
           render :new
         end
@@ -27,6 +36,7 @@ class DestinationsController < ApplicationController
   end
 
   def edit
+    @trip = Trip.find(params[:trip_id])
     @destination = Destination.find(params[:id])
   end
 
@@ -34,7 +44,7 @@ class DestinationsController < ApplicationController
     @destination = Destination.find(params[:id])
     @destination.update(destination_params)
     if @destination.save
-      redirect_to destination_path(@destination)
+      redirect_to trip_destination_path(@destination)
     else
       render :edit
     end
@@ -48,6 +58,6 @@ class DestinationsController < ApplicationController
 
   private
   def destination_params
-    params.require(:destination).permit(:country, :state)
+    params.require(:destination).permit(:country, :state, :trip_id)
   end
 end

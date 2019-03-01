@@ -1,4 +1,6 @@
 class Activity < ApplicationRecord
-  has_many :trip_activities
-  validates :name, uniqueness: true
+  belongs_to :trip
+  belongs_to :destination
+  #validates :name, uniqueness: true
+
 end

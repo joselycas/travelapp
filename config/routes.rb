@@ -1,15 +1,16 @@
 Rails.application.routes.draw do
-  #get '/signin' => 'sessions#new'
-  #post '/signin' => 'sessions#signin'
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+   get '/logout' => 'sessions#destroy'
    delete '/logout' => 'sessions#destroy'
-  get '/auth/facebook/callback' => 'sessions#create'
+  #get '/auth/facebook/callback' => 'sessions#create'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  resources :users do
-    resources :trips
-  end
+  resources :users
 
-  resources :destinations
+  resources :trips do
+    resources :destinations
+  end
   resources :activities
 
 

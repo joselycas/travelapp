@@ -1,7 +1,8 @@
 class TripsController < ApplicationController
 
   def index
-    @trips = Trip.all
+    @user = current_user
+    @trips = current_user.trips
   end
 
   def new
@@ -14,13 +15,14 @@ class TripsController < ApplicationController
     @user = current_user
     @trip = Trip.new(trip_params)
      if @trip.save
-        redirect_to user_trip_path(@user, @trip)
+        redirect_to trip_path(@trip)
       else
         render :new
       end
   end
 
   def show
+    @user = current_user
     @trip = Trip.find(params[:id])
   end
 
@@ -34,7 +36,7 @@ class TripsController < ApplicationController
     @trip = Trip.find(params[:id])
     @trip.update(trip_params)
     if @trip.save
-      redirect_to user_trip_path(@user, @trip)
+      redirect_to trip_path(@trip)
     else
       render :edit
     end
@@ -43,7 +45,8 @@ class TripsController < ApplicationController
   def destroy
     @user = current_user
     Trip.find(params[:id]).destroy
-    redirect_to user_trip_path(@user)
+    flash[:notice] = "Success You've deleted this trip!"
+    redirect_to trips_path(@trip)
   end
 
   private

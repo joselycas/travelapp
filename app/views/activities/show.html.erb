@@ -3,4 +3,4 @@
 <%= form_tag activity_path(@activity.id), method: "delete" do %>
   <%= submit_tag "Delete #{@activity.name}" %>
   <%end%>
-<h2><%= link_to '<button type="button">Back to Trips</button>'.html_safe, user_trips_path(@user, @trip) %> </h2>
+<%= link_to '<button type="button">Back to Trips</button>'.html_safe, user_trips_path(@user, @trip) %> 

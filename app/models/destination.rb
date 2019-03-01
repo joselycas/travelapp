@@ -1,5 +1,6 @@
 class Destination < ApplicationRecord
-  has_many :trip_activities
-  has_many :activities, through: :trip_activities
+  belongs_to :trip
+  has_many :activities
+    accepts_nested_attributes_for :activities
   validates :country, uniqueness: true
 end

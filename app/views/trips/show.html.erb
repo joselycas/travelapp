@@ -1,10 +1,11 @@
 
 <h2>You're going to <%= @trip.description %><br>
-Trip Dates: <%= @trip.start_date %> to  <%= @trip.end_date %><br>
+Trip Dates: <%= @trip.start_date%> to  <%= @trip.end_date %><br>
 
-Budget <%= @trip.budget %><br> </h2>
-<%= link_to '<button type="button">Edit Trip</button>'.html_safe, edit_user_trip_path %>
-<%= form_tag user_trip_path(@trip.id), method: "delete" do %>
+Budget $<%= @trip.budget %><br> </h2>
+
+<%= link_to '<button type="button">Edit Trip</button>'.html_safe, edit_trip_path(@trip) %>
+<%= form_tag trip_path(@trip), method: "delete" do %>
 <%= submit_tag "Delete #{@trip.description}" %>
 <%end%>
- <%= link_to '<button type="button">Add a Destination</button>'.html_safe, new_destination_path %>
+ <%= link_to '<button type="button">Add a Destination</button>'.html_safe, new_trip_destination_path(@trip, @destination) %>
