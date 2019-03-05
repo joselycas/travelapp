@@ -4,4 +4,18 @@
 <%= form_tag activity_path(@destination.id), method: "delete" do %>
   <%= submit_tag "Delete #{@destination.country}" %>
   <%end%>
-  <%= link_to '<button type="button">Add Activities</button>'.html_safe, new_activity_path %>
+
+  <%= form_for @activity do |f| %>
+    Activity:
+    <ul>
+      <%= f.fields_for :activity do |activity_form| %>
+        <li>
+          <%= activity_form.label :name %>
+          <%= activity_form.text_field :name %>
+
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= link_to '<button type="button">Add Activities</button>'.html_safe, new_activity_path(:trip_id => @trip_id, :destination_id => @destination_id) %>

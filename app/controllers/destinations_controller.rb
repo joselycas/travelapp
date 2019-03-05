@@ -14,6 +14,7 @@ class DestinationsController < ApplicationController
   def new
     @trip = Trip.find(params[:trip_id])
     @destination = @trip.destinations.build
+    2.times { @destination.activities.build }
   end
 
   def create
@@ -32,6 +33,7 @@ class DestinationsController < ApplicationController
 
   def show
     @destination = Destination.find(params[:id])
+    @trip_id = params[:trip_id]
     @user = current_user
   end
 
@@ -58,6 +60,6 @@ class DestinationsController < ApplicationController
 
   private
   def destination_params
-    params.require(:destination).permit(:country, :state, :trip_id)
+    params.require(:destination).permit(:country, :state, :trip_id, addresses_attributes: [:id, :name])
   end
 end

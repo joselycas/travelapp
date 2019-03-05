@@ -1,5 +1,16 @@
 
 <%= form_for [@trip] do |f| %>
+
+<% if @trip.errors.any? %>
+    <div id="error_explanation">
+      <p>There were some errors</p>
+      <ul>
+        <% @trip.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 <%= f.hidden_field :user_id, :value => @user.id %>
 
 
