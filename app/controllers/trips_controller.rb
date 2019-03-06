@@ -1,8 +1,7 @@
 class TripsController < ApplicationController
 
   def index
-    @user = current_user
-    @trips = current_user.trips
+    @user_trips = current_user.trips
   end
 
   def new
@@ -17,7 +16,6 @@ class TripsController < ApplicationController
      if @trip.save
         redirect_to trip_path(@trip)
       else
-      
         render :new
       end
   end

@@ -8,10 +8,10 @@ class ActivitiesController < ApplicationController
   end
 
   def new
-    @destination = Destination.find_by(params[:id])
-    @trip = Trip.find_by(params[:id])
+    @destination_id = params[:destination_id]
+    @trip_id = params[:trip_id]
     @activity = Activity.new
-    binding.pry
+
   end
 
   def create

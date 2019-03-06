@@ -5,17 +5,6 @@
   <%= submit_tag "Delete #{@destination.country}" %>
   <%end%>
 
-  <%= form_for @activity do |f| %>
-    Activity:
-    <ul>
-      <%= f.fields_for :activity do |activity_form| %>
-        <li>
-          <%= activity_form.label :name %>
-          <%= activity_form.text_field :name %>
 
-        </li>
-      <% end %>
-    </ul>
-  <% end %>
 
   <%= link_to '<button type="button">Add Activities</button>'.html_safe, new_activity_path(:trip_id => @trip_id, :destination_id => @destination_id) %>

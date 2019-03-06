@@ -2,19 +2,13 @@
 class DestinationsController < ApplicationController
 
   def index
-    @user = current_user
-    @destinations = Destination.all
-    # if params[:club_id]
-    #     @fighters = Club.find(params[:club_id]).includes(:clubs).fighters
-    # else
-    #     @fighters = Fighter.all
-    # end
+    @trip_id = Trip.find(params[:trip_id])
+    @destinations =  @trip_id.destinations
   end
 
   def new
     @trip = Trip.find(params[:trip_id])
     @destination = @trip.destinations.build
-    2.times { @destination.activities.build }
   end
 
   def create
@@ -27,14 +21,16 @@ class DestinationsController < ApplicationController
         else
           render :new
         end
-      flash[:notice] = "You don't have access!"
+        flash[:notice] = "You don't have access!"
     end
   end
 
   def show
-    @destination = Destination.find(params[:id])
+      @user = current_user
+    @destination = Destination.find_by(params[:id])
+    @destination_id = params[:id]
     @trip_id = params[:trip_id]
-    @user = current_user
+
   end
 
   def edit
