@@ -2,8 +2,13 @@
 <%= f.hidden_field :trip_id, :value => @trip.id %>
   <%= f.label :country %><br>
   <%= f.text_field :country %><br><br>
-  <%= f.label :state %><br>
-  <%= f.text_field :state %><br><br>
+
+    <%= f.fields_for :trip_destinations do |trip_destinations_form| %>
+
+        <%= trip_destinations_form.label :flight_cost %><br>
+        <%= trip_destinations_form.text_field :cost %><br><br>
+
+    <% end %>
 
   <%= f.submit "Create Destination" %>
 

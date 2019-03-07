@@ -36,12 +36,12 @@
     </div>
   </nav>
 
-  <% flash.each do |name, msg| %>
-    <div data-alert id="flashes" class="alert-box  <%= name %>">
-        <%= content_tag :div, msg, id: "flash_#{name}" %>
-        <a href="#" class="close">&times;</a>
-    </div>
-<% end %>
+  <div class="container">
+       <% flash.each do |key, value| %>
+         <div class="alert alert-<%= key %>"><%= value %></div>
+       <% end %>
+
+     </div>
 
       <%= yield %>
     </div>

@@ -1,13 +1,16 @@
 class TripsController < ApplicationController
 
   def index
-    @user_trips = current_user.trips
+    if logged_in? && current_user
+      @user_trips = current_user.trips
+    else
+      redirect_to root_path
+    end
   end
 
   def new
     @user = current_user
     @trip = current_user.trips.build
-    #@destination = Destination.find(params[:id])
   end
 
   def create
@@ -21,8 +24,12 @@ class TripsController < ApplicationController
   end
 
   def show
-    @user = current_user
-    @trip = Trip.find(params[:id])
+    if logged_in? && current_user
+      @user = current_user
+      @trip = Trip.find(params[:id])
+    else
+      redirect_to root_path
+    end
   end
 
   def edit

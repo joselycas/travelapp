@@ -13,29 +13,36 @@ class DestinationsController < ApplicationController
 
   def create
       if logged_in? && current_user
-      @trip = Trip.find(params[:trip_id])
-      @destination = Destination.create(destination_params)
-
-        if @destination.save
-          redirect_to trip_destination_path(@trip, @destination)
-        else
-          render :new
+        @user = current_user
+        @trip = Trip.find(params[:trip_id])
+        @destination = Destination.create(destination_params)
+          if @destination.save
+            redirect_to trip_destination_path(@trip, @destination)
+          else
+            flash[:notice] = "You don't have access!"
+            render :new
+          end
         end
-        flash[:notice] = "You don't have access!"
+    end
+
+  def show
+    if logged_in? && current_user
+      @user = current_user
+      @destination = Destination.find(params[:id])
+      @destination_id = params[:id]
+      @trip_id = params[:trip_id]
+    else
+      redirect_to root_path
     end
   end
 
-  def show
-      @user = current_user
-    @destination = Destination.find_by(params[:id])
-    @destination_id = params[:id]
-    @trip_id = params[:trip_id]
-
-  end
-
   def edit
+    if logged_in? && current_user
     @trip = Trip.find(params[:trip_id])
     @destination = Destination.find(params[:id])
+  else
+    redirect_to root_path
+  end
   end
 
   def update
@@ -56,6 +63,6 @@ class DestinationsController < ApplicationController
 
   private
   def destination_params
-    params.require(:destination).permit(:country, :state, :trip_id, addresses_attributes: [:id, :name])
+    params.require(:destination).permit(:country, :state, :trip_id, trip_destinations_attributes: [:id, :cost])
   end
 end

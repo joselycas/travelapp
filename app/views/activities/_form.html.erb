@@ -1,6 +1,6 @@
 <%= form_for @activity do |f| %>
- <% f.hidden_field :destination_id, :value => @destination_id  %>
- <% f.hidden_field :trip_id, :value => @trip_id %>
+ <%= f.hidden_field :destination_id, :value => @destination_id  %>
+ <%= f.hidden_field :trip_id, :value => @trip_id %>
   <%= f.label :name %><br>
   <%= f.text_field :name %><br><br>
   <%= f.submit "Create Activity" %>

@@ -2,8 +2,8 @@ class ActivitiesController < ApplicationController
 
   def index
     @user = current_user
-    @trip = Trip.find_by(params[:id])
-    @destination = Destination.find_by(params[:id])
+    @trip = Trip.find(params[:activity][:trip_id])
+    @destination = Destination.find(params[:activity][:destination_id])
     @activities = Activity.all
   end
 
@@ -16,8 +16,8 @@ class ActivitiesController < ApplicationController
 
   def create
       if logged_in? && current_user
-        @destination = Destination.find_by(params[:id])
-        @trip = Trip.find_by(params[:id])
+        @destination = Destination.find(params[:activity][:destination_id])
+        @trip = Trip.find(params[:activity][:trip_id])
         @activity = Activity.create(activity_params)
         if @activity.save
           redirect_to activity_path(@activity)
@@ -34,6 +34,7 @@ class ActivitiesController < ApplicationController
   def show
     @user = current_user
     @activity = Activity.find(params[:id])
+    @trips = current_user.trips
   end
 
   def edit
@@ -53,7 +54,7 @@ class ActivitiesController < ApplicationController
   def destroy
     @user = current_user
     Activity.find(params[:id]).destroy
-    redirect_to user_trips_path(@user)
+    redirect_to trips_path
   end
 
   private

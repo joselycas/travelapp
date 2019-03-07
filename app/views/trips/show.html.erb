@@ -3,6 +3,10 @@
 Trip Dates: <%= @trip.start_date.try(:strftime,"%-m/%-d/%-Y") %> to  <%= @trip.end_date.try(:strftime,"%-m/%-d/%-Y") %> <br>
 
 Budget $<%= @trip.budget %><br> </h2>
+<% @trip.destinations.each do |destination| %>
+<%= destination.country %>
+<% end %>
+
 
 <%= link_to '<button type="button">Edit Trip</button>'.html_safe, edit_trip_path(@trip) %>
 <%= form_tag trip_path(@trip), method: "delete" do %>

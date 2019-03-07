@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   def create
      @user = User.new(user_params)
     if @user.save
+      flash[:success] = "Welcome to the Travel App!"
       session[:user_id] = @user.id
       redirect_to user_path(@user)
      else
@@ -32,6 +33,7 @@ class UsersController < ApplicationController
   def destroy
     User.find(session[:user_id]).destroy
     session[:user_id] = nil
+    flash[:success] = "You've successfully logged out"
     redirect_to root_path
   end
 
