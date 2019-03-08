@@ -3,6 +3,7 @@ class TripsController < ApplicationController
   def index
     if logged_in? && current_user
       @user_trips = current_user.trips
+      #binding.pry
     else
       redirect_to root_path
     end

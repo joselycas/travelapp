@@ -63,6 +63,6 @@ class DestinationsController < ApplicationController
 
   private
   def destination_params
-    params.require(:destination).permit(:country, :state, :trip_id, trip_destinations_attributes: [:id, :cost])
+    params.require(:destination).permit(:country, :state, trip_destinations_attributes: [:id, :cost])
   end
 end
