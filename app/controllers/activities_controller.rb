@@ -19,6 +19,7 @@ class ActivitiesController < ApplicationController
         @destination = Destination.find(params[:activity][:destination_id])
         @trip = Trip.find(params[:activity][:trip_id])
         @activity = Activity.create(activity_params)
+  
         if @activity.save
           redirect_to activity_path(@activity)
         else

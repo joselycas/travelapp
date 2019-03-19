@@ -15,7 +15,8 @@ class DestinationsController < ApplicationController
       if logged_in? && current_user
         @user = current_user
         @trip = Trip.find(params[:trip_id])
-        @destination = Destination.create(destination_params)
+        @destination = Destination.find_or_create_by(country: params[:destination][:country])
+        @destination.update(destination_params)
           if @destination.save
             redirect_to trip_destination_path(@trip, @destination)
           else
@@ -63,6 +64,6 @@ class DestinationsController < ApplicationController
 
   private
   def destination_params
-    params.require(:destination).permit(:country, :state, trip_destinations_attributes: [:id, :cost])
+    params.require(:destination).permit(:country, :state, trip_destinations_attributes: [:cost, :trip_id])
   end
 end

@@ -1,12 +1,13 @@
 <%= form_for [@trip, @destination] do |f| %>
-<%= f.hidden_field :trip_id, :value => @trip.id %>
-  <%= f.label :country %><br>
+
+
   <%= f.text_field :country %><br><br>
 
-    <%= f.fields_for :trip_destinations do |trip_destinations_form| %>
 
-        <%= trip_destinations_form.label :flight_cost %><br>
-        <%= trip_destinations_form.text_field :cost %><br><br>
+    <%= f.fields_for :trip_destinations, @trip.trip_destinations.build do |trip_destinations_attr| %>
+      <%= trip_destinations_attr.hidden_field :trip_id, :value => @trip.id %>
+        <%= trip_destinations_attr.label :flight_cost %><br>
+        <%= trip_destinations_attr.text_field :cost %><br><br>
 
     <% end %>
 
