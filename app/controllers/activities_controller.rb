@@ -15,11 +15,12 @@ class ActivitiesController < ApplicationController
   end
 
   def create
+    #find or create by
       if logged_in? && current_user
         @destination = Destination.find(params[:activity][:destination_id])
         @trip = Trip.find(params[:activity][:trip_id])
         @activity = Activity.create(activity_params)
-  
+
         if @activity.save
           redirect_to activity_path(@activity)
         else
@@ -35,7 +36,7 @@ class ActivitiesController < ApplicationController
   def show
     @user = current_user
     @activity = Activity.find(params[:id])
-    @trips = current_user.trips
+    @trip = @activity.trip
   end
 
   def edit

@@ -3,10 +3,7 @@
 Trip Dates: <%= @trip.start_date.try(:strftime,"%-m/%-d/%-Y") %> to  <%= @trip.end_date.try(:strftime,"%-m/%-d/%-Y") %> <br>
 
 Budget $<%= @trip.budget %><br> </h2>
-<% @trip.destinations.each do |destination| %>
-<%= destination.country %>
-destination.activities.each
-<% end %><br><br>
+<br><br>
 
 
 
