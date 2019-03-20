@@ -2,7 +2,7 @@ class TripsController < ApplicationController
 
   def index
     if logged_in? && current_user
-      @user_trips = current_user.trips
+      @user_trips = current_user.trips.desc
     else
       redirect_to root_path
     end

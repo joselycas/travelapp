@@ -1,7 +1,7 @@
 <h1> Welcome to your trip tracker </h1>
 
 <% @user_trips.each do |trip| %>
-    <strong>Dates:</strong> <%= trip.start_date.try(:strftime,"%-b %d/%-y") %> - <%= trip.end_date.try(:strftime,"%-b %d/%-y") %> <br><%= link_to trip.description, trip_path(trip.id) %> - <%= trip.budget %> <br>
+    <strong>Dates:</strong> <%= trip.start_date.try(:strftime,"%-m/%d/%-y") %> - <%= trip.end_date.try(:strftime,"%-m/%d/%-y") %> <br><%= link_to trip.description, trip_path(trip.id) %> - <%= trip.budget %> <br>
 <% trip.destinations.each do |d| %>
     Destination: <%= d.country %><br>
     Activity: <% d.activities.each do |activity| %>

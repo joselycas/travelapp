@@ -5,8 +5,11 @@ class Trip < ApplicationRecord
   has_many :activities
   validates :description, presence: true, allow_blank: false
   validates :budget, presence: true, allow_blank: false
-  default_scope { order(created_at: :desc) }
-  #scope :desc, order(start_date: :desc)
+  #default_scope { order(created_at: :desc) }
+  scope :desc, -> { order(:start_date => :desc)}
 
 #add scope method for ordering by name in the controller - define here
 end
+
+# scope :visible, -> {
+#   where(:visible => true)
