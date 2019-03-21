@@ -1,6 +1,6 @@
 
 <h2>You're going to <%= @trip.description %><br>
-Trip Dates: <%= @trip.start_date.try(:strftime,"%-m/%-d/%-Y") %> to  <%= @trip.end_date.try(:strftime,"%-m/%-d/%-Y") %> <br>
+Trip Dates: <%= @trip.start_date.try(:strftime,"%-m/%-d/%Y") %> to  <%= @trip.end_date.try(:strftime,"%-m/%-d/%-y") %> <br>
 
 Budget $<%= @trip.budget %><br> </h2>
 <br><br>

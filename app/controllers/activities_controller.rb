@@ -16,7 +16,7 @@ class ActivitiesController < ApplicationController
 
   def create
     #find or create by
-      if logged_in? && current_user
+      #if logged_in? && current_user
         @destination = Destination.find(params[:activity][:destination_id])
         @trip = Trip.find(params[:activity][:trip_id])
         @activity = Activity.create(activity_params)
@@ -27,9 +27,9 @@ class ActivitiesController < ApplicationController
           flash[:error] = "Please make sure you fill in all fields"
           render :new
 
-        end
-      else
-        flash[:notice] = "You don't have access!"
+      #  end
+      # else
+      #   flash[:notice] = "You don't have access!"
      end
   end
 

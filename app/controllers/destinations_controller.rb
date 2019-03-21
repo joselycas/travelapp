@@ -1,5 +1,11 @@
 
 class DestinationsController < ApplicationController
+  #add top destination in menu navbar
+  # look at navbar
+  #look at data in trip index and trip show
+
+  def top
+  end
 
   def index
     @trip_id = Trip.find(params[:trip_id])
@@ -12,7 +18,7 @@ class DestinationsController < ApplicationController
   end
 
   def create
-      if logged_in? && current_user
+      #if logged_in? && current_user
         @user = current_user
         @trip = Trip.find(params[:trip_id])
         @destination = Destination.find_or_create_by(country: params[:destination][:country])
@@ -20,30 +26,30 @@ class DestinationsController < ApplicationController
           if @destination.save
             redirect_to trip_destination_path(@trip, @destination)
           else
-            flash[:notice] = "You don't have access!"
+            #flash[:notice] = "You don't have access!"
             render :new
           end
-        end
+        #end
     end
 
   def show
-    if logged_in? && current_user
+    #if logged_in? && current_user
       @user = current_user
       @destination = Destination.find(params[:id])
       @destination_id = params[:id]
       @trip_id = params[:trip_id]
-    else
-      redirect_to root_path
-    end
+    #else
+    #  redirect_to root_path
+    #end
   end
 
   def edit
-    if logged_in? && current_user
+  #  if logged_in? && current_user
     @trip = Trip.find(params[:trip_id])
     @destination = Destination.find(params[:id])
-  else
-    redirect_to root_path
-  end
+#  else
+  #  redirect_to root_path
+  #end
   end
 
   def update

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
    #delete '/logout' => 'sessions#destroy'
 
   get '/auth/facebook/callback' => 'sessions#create'
-
+  get '/top_destinations' => 'destinations#top'
 
   resources :users
 
@@ -13,9 +13,6 @@ Rails.application.routes.draw do
     resources :destinations
   end
   resources :activities
-
-
-
 
   root 'welcome#home'
 
