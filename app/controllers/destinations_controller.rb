@@ -5,6 +5,7 @@ class DestinationsController < ApplicationController
   #look at data in trip index and trip show
 
   def top
+    @destinations = Destination.all
   end
 
   def index
