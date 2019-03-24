@@ -2,6 +2,8 @@
    <%= @destination.country.capitalize %> <br>
 
 </h1>
+
+
 <%= link_to '<button type="button">Edit destination</button>'.html_safe, edit_trip_destination_path %>
 <%= form_tag activity_path(@destination.id), method: "delete" do %>
   <%= submit_tag "Delete #{@destination.country}" %>

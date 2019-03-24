@@ -13,20 +13,16 @@ class TripsController < ApplicationController
     @user = current_user
     @trip = Trip.new(trip_params)
      if @trip.save
-        redirect_to trip_path(@trip)
+        redirect_to new_trip_destination_path(@trip)
       else
         render :new
       end
   end
 
   def show
-    #if logged_in? && current_user
       @user = current_user
       @trip = Trip.find(params[:id])
-      @trip.destinations = Trip.destinations.find(params[:id])
-    #else
-      #redirect_to root_path
-    #end
+      @user_trips = current_user.trips
   end
 
   def edit
