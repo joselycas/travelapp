@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :require_login
-  private
+    helper_method :current_user, :logged_in?
+
 
   def current_user
   if session[:user_id]
