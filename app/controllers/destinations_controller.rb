@@ -2,6 +2,7 @@
 class DestinationsController < ApplicationController
 
   def top
+    @top_destinations = Trip.top_n_destinations(5)
     @destinations = Destination.all
   end
 

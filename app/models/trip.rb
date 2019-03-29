@@ -5,11 +5,28 @@ class Trip < ApplicationRecord
   has_many :activities
   validates :description, presence: true, allow_blank: false
   validates :budget, presence: true, allow_blank: false
-  #default_scope { order(created_at: :desc) }
   scope :desc, -> { order(:start_date => :desc)}
+  scope :with_destinations, -> { joins(trip_destinations: :destination)}
+  scope :group_by_destinations, -> {with_destinations.group("destinations.id")}
+  scope :rank_by_destinations, -> {group_by_destinations.select("*, count(trips.id) as total_count").order("total_count desc")}
+  scope :top_n_destinations, ->(n) {rank_by_destinations.limit(n) }
+  # def self.with_destinations
+  # 		joins(trip_destinations: :destination)
+	# end
 
-#add scope method for ordering by name in the controller - define here
+  	# will group a table by common destination_ids
+  	# def self.group_by_destinations
+  	# 	with_destinations.group("destinations.id")
+  	# end
+
+  	# take a grouped value
+  	# def self.rank_by_destinations
+  	# 	group_by_destinations.select("*, count(trips.id) as total_count").order("total_count desc")
+  	# end
+    #
+  	# # uses rank_by_destination, limit to top n values, ie top 5, 10, etc.
+  	# def self.top_n_destinations(n)
+  	# 	rank_by_destinations.limit(n)
+  	# end
+
 end
-
-# scope :visible, -> {
-#   where(:visible => true)
