@@ -27,6 +27,10 @@ class TripsController < ApplicationController
       @user = current_user
       @trip = Trip.find(params[:id])
       @user_trips = current_user.trips
+      # respond_to do |f|
+      #   f.html {render :index}
+      #   f.json {render json: @user_trips}
+      # end
   end
 
   def edit
