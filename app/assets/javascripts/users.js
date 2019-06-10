@@ -13,6 +13,13 @@ function indexClickListener() {
 
 };
 
+function showClickListener(){
+  $(".show-trip").on("click", function(event){
+    event.preventDefault()
+    alert("hi")
+  });
+};
+
 function newTripFormListener() {
   $("button.new-trip").on("click", function(event){
     event.preventDefault()
@@ -28,13 +35,16 @@ function getTrips() {
     dataType: "json"
   }).done(function(data){
     data.forEach(function(trip){
-      console.log(data)
       let newTrip = new Trip(trip)
       $('#post-trips').append(newTrip.postHTML())
       // document.getElementById('post-trips').append(newTrip.postHTML())
     })
   });
 
+};
+
+function showTrip(){
+  fetch("http://localhost:3000/trips.json")
 };
 
 class Trip{
@@ -49,9 +59,8 @@ class Trip{
 
 
 Trip.prototype.postHTML = function () {
-  return `<li>
-          <h2>${this.description}</h2>
-          <p>${this.start_date} <br>
-          ${this.end_date} </p>
-        </li>`
+  return `<div>
+          <a href = http://localhost:3000/trips/${this.id} class="show-trip"> <h2>${this.description}</h2></a>
+
+        </div>`
 }
