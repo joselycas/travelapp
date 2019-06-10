@@ -33,11 +33,13 @@ function getTrips() {
     method: "get",
     dataType: "json"
   }).done(function(data){
-    console.log(data)
-    let trip = new Trip(data)
-    let tripHTML = trip.postHTML()
-    document.getElementById('post-trips').innerHTML = tripHTML
-
+    data.forEach(trip => {
+      let newTrip = new Trip(trip)
+      let tripHTML = newTrip.postHTML()
+      document.getElementById('post-trips').innerHTML = tripHTML
+      console.log(tripHTML)
+      debugger
+    })
   });
 
 };
@@ -48,29 +50,29 @@ class Trip{
     this.description = obj.description
     this.start_date = obj.start_date
     this.end_date = obj.end_date
-    console.log(obj)
-  debugger
+
   }
 
 }
 
-// function Trip(obj){
-//   this.id = obj.id
-//   this.description = obj.description
-//   this.start_date = obj.start_date
-//   this.end_date = obj.end_date
-//   console.log(this)
-//   debugger
-// }
 
 
 Trip.prototype.postHTML = function () {
-  let tripHTML = (`
+  return (`
     <div>
       <h2>${this.description}</h2>
       <p>${this.start_date} <br>
-      ${this.end_date}
+      ${this.end_date} </p> 
     </div>
   `)
 
 }
+//
+// postHTML = () => (`
+//  <div>
+//      <h2>${this.description}</h2>
+//      <p>${this.start_date} <br>
+//      ${this.end_date}
+//    </div>
+//  `
+// )
