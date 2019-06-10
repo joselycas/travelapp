@@ -22,11 +22,6 @@ function newTripFormListener() {
 };
 
 function getTrips() {
-  // fetch('http://localhost:3000/trips')
-  // // .then(res => res.json())
-  // // .then(data => {
-  // //   console.log(data)
-  // // })
   $.ajax({
     url: "http://localhost:3000/trips",
     method: "get",
@@ -35,7 +30,8 @@ function getTrips() {
     data.forEach(function(trip){
       console.log(data)
       let newTrip = new Trip(trip)
-      document.getElementById('post-trips').append(newTrip.postHTML())
+      $('#post-trips').append(newTrip.postHTML())
+      // document.getElementById('post-trips').append(newTrip.postHTML())
     })
   });
 
