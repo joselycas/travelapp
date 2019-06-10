@@ -1,7 +1,11 @@
 class TripsController < ApplicationController
 
   def index
-      @user_trips = current_user.trips.desc
+    @user_trips = current_user.trips.desc
+    respond_to do |f|
+      f.html {render :index}
+      f.json {render json: @user_trips}
+    end
   end
 
   def new

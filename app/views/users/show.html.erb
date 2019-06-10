@@ -1,2 +1,6 @@
 <h1>Hi <%= @user.name %>, welcome to your travel planner</h1>
-<h3> Let's get started by adding a trip </h3> <%= link_to "add a trip", new_trip_path %>
+<h3> Let's get started by adding a trip:  <%= link_to "add a trip", new_trip_path %> </h3><br>
+
+
+<button class="get-trips">List of all your trips</button>
+<div id="post-trips">post trips here</div>

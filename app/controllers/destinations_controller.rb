@@ -3,8 +3,8 @@ class DestinationsController < ApplicationController
 
   def top
     @top_destinations = Trip.top_n_destinations(5)
-    @destinations = Destination.all
   end
+
 
   def index
     @trip_id = Trip.find(params[:trip_id])
