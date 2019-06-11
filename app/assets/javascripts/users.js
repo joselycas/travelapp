@@ -3,6 +3,7 @@
 $(document).ready(function() { 
   console.log("this is loaded")
    indexClickListener()
+   showClickListener()
  });
 
 function indexClickListener() {
@@ -13,11 +14,20 @@ function indexClickListener() {
 
 };
 
-function showClickListener(){
-  $(".show-trip").on("click", function(event){
+
+function showClickListener() {
+  $(document).on("click", "#show-trip", function(event) {
     event.preventDefault()
-    alert("hi")
-  });
+    alert("hiiii")
+    debugger
+    let id = $(this).attr('data-id')
+   fetch(`/trips/${id}.json`)
+   .then(res => res.json())
+   .then(trip => {
+     console.log(trip)
+
+   });
+ });
 };
 
 function newTripFormListener() {
@@ -43,9 +53,6 @@ function getTrips() {
 
 };
 
-function showTrip(){
-  fetch("http://localhost:3000/trips.json")
-};
 
 class Trip{
   constructor(obj){
@@ -60,7 +67,14 @@ class Trip{
 
 Trip.prototype.postHTML = function () {
   return `<div>
-          <a href = http://localhost:3000/trips/${this.id} class="show-trip"> <h2>${this.description}</h2></a>
+          <a href = 'http://localhost:3000/trips/${this.id}' data-id='${this.id}' id='show-trip'> <h2>${this.description}</h2></a>
 
+        </div>`
+}
+
+Trip.prototype.postShowHTML = function () {
+  return `<div>
+
+        <h1>${this.start_date}<h1>
         </div>`
 }
