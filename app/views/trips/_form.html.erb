@@ -1,5 +1,5 @@
 
-<%= form_for [@trip] do |f| %>
+<%= form_for [@trip], :html => {:id => "new_trip"} do |f| %>
 
 <% if @trip.errors.any? %>
     <div id="error_explanation">

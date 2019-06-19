@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+gem 'jquery-rails'
+
 gem 'active_model_serializers', '0.10.6'
 ruby '2.5.3'
 
