@@ -43,13 +43,31 @@ function showClickListener() {
 function newTripForm() {
   $("#new_trip").on("submit", function(event){
     event.preventDefault()
-   const values = ($(this).serialize()
+   const values = $(this).serialize()
+
    $.post("/trips", values)
-   // .done(function(data) {
-   //   console.log(data)
-   // });
+   .done(function(data) {
+     $("#app-container").html("")
+     $("#app-container").html("what will happen?")
+   });
  });
 };
+
+
+// function newTripForm() {
+//   $("#new_trip").on("submit", function(event){
+//     event.preventDefault()
+//    const values = ($(this).serialize()
+//    $.ajax({
+//      url: "http://localhost:3000/trips",
+//      method: "POST",
+//      dataType: "JSON"
+//    }).done(function(data){
+//         console.log(data)
+//    });
+//
+//  });
+// };
 
 
 

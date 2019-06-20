@@ -14,14 +14,12 @@ class TripsController < ApplicationController
   end
 
   def create
-    # @user = current_user
-    # @trip = Trip.new(trip_params)
-    @trip = current_user.trips.build(trip_params)
+     @trip = current_user.trips.build(trip_params)
      if @trip.save
         # redirect_to new_trip_destination_path(@trip)
-        render :json [@trip, @user]
-      else
-        render :new
+        render json: @trip
+      # else
+      #   render :new
       end
   end
 
