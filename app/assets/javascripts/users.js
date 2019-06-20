@@ -101,5 +101,6 @@ Trip.prototype.postShowHTML = function () {
         <p>Description ${this.description}
         <p>Start date ${this.start_date}</p>
         <p>End date ${this.end_date}</p>
+        <p>${this.user}
         </div>`
 }
