@@ -48,7 +48,9 @@ function newTripForm() {
    $.post("/trips", values)
    .done(function(data) {
      $("#app-container").html("")
-     $("#app-container").html("what will happen?")
+    const newTrip = new Trip(data)
+    console.log(newTrip)
+    $("#app-container").html(newTrip.postShowHTML())
    });
  });
 };
@@ -96,6 +98,7 @@ Trip.prototype.postHTML = function () {
 
 Trip.prototype.postShowHTML = function () {
   return `<div>
+        <p>Description ${this.description}
         <p>Start date ${this.start_date}</p>
         <p>End date ${this.end_date}</p>
         </div>`
