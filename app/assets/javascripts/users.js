@@ -13,6 +13,10 @@ function Trip(obj){
     this.description = obj.description
     this.start_date = obj.start_date
     this.end_date = obj.end_date
+
+    this.activity = obj.activities.forEach(function(activity){
+      activity.name
+    });
 }
 
 function indexClickListener() {
@@ -47,9 +51,10 @@ function newTripForm() {
 
    $.post("/trips", values)
    .done(function(data) {
+     console.log(data)
      $("#app-container").html("")
     const newTrip = new Trip(data)
-    console.log(newTrip)
+
     $("#app-container").html(newTrip.postShowHTML())
    });
  });
@@ -97,10 +102,14 @@ Trip.prototype.postHTML = function () {
 }
 
 Trip.prototype.postShowHTML = function () {
+
   return `<div>
         <p>Description ${this.description}
         <p>Start date ${this.start_date}</p>
-        <p>End date ${this.end_date}</p>
-        <p>${this.user}
+        <p>End date ${this.end_date</p>
+
+
+
+
         </div>`
 }

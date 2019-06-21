@@ -29,7 +29,7 @@ class TripsController < ApplicationController
       @user_trips = current_user.trips
       respond_to do |f|
         f.html {render :show}
-        f.json {render json: @trip}
+        f.json {render json: @trip, include: ['activities']}
       end
   end
 
