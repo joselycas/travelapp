@@ -14,7 +14,7 @@ function Trip(obj){
     this.start_date = obj.start_date
     this.end_date = obj.end_date
 
-    this.activity = obj.activities.forEach(function(activity){
+    this.activity = obj.activities.forEach((activity) => {
       activity.name
     });
 }
@@ -51,7 +51,7 @@ function newTripForm() {
 
    $.post("/trips", values)
    .done(function(data) {
-     console.log(data)
+
      $("#app-container").html("")
     const newTrip = new Trip(data)
 
@@ -59,22 +59,6 @@ function newTripForm() {
    });
  });
 };
-
-
-// function newTripForm() {
-//   $("#new_trip").on("submit", function(event){
-//     event.preventDefault()
-//    const values = ($(this).serialize()
-//    $.ajax({
-//      url: "http://localhost:3000/trips",
-//      method: "POST",
-//      dataType: "JSON"
-//    }).done(function(data){
-//         console.log(data)
-//    });
-//
-//  });
-// };
 
 
 
@@ -96,9 +80,11 @@ function getTrips() {
 
 Trip.prototype.postHTML = function () {
   return `<div>
-          <a href = "http://localhost:3000/trips/${this.id}" data-id="${this.id}" id="show-trip"> <h2>${this.description}</h2></a>
+          <a href = "http://localhost:3000/trips/${this.id}" data-id="${this.id}" id="show-trip"> <h2>${this.description}</h2>
+          </a>
+          </div>
+      `
 
-        </div>`
 }
 
 Trip.prototype.postShowHTML = function () {
@@ -106,7 +92,7 @@ Trip.prototype.postShowHTML = function () {
   return `<div>
         <p>Description ${this.description}
         <p>Start date ${this.start_date}</p>
-        <p>End date ${this.end_date</p>
+        <p>End date ${this.end_date}</p>
 
 
 

@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2019_03_07_232056) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "destination_id"
-    t.integer "trip_id" 
+    t.integer "trip_id"
   end
 
   create_table "destinations", force: :cascade do |t|

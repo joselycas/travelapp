@@ -39,7 +39,7 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'rake'
-gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1', '>= 3.1.12'
 gem "bootstrap", ">= 4.3.1"
 gem 'jquery-rails'
 gem 'figaro'

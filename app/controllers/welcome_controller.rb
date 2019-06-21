@@ -4,6 +4,5 @@ class WelcomeController < ApplicationController
 
   def home
     @user = current_user
-    #@logged_in = logged_in?
   end
 end
