@@ -37,7 +37,7 @@ class ActivitiesController < ApplicationController
     @user = current_user
     @activity = Activity.find(params[:id])
     @trip = @activity.trip
-    render json: @activity
+    # render json: @activity
   end
 
   def edit

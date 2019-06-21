@@ -13,10 +13,8 @@ function Trip(obj){
     this.description = obj.description
     this.start_date = obj.start_date
     this.end_date = obj.end_date
-
-    this.activity = obj.activities.forEach((activity) => {
-      activity.name
-    });
+    this.activities = obj.activities
+    // this.activity = obj.activities.map((activity) => {activity.name});
 }
 
 function indexClickListener() {
@@ -36,8 +34,8 @@ function showClickListener() {
    .then(res => res.json())
    .then(trip => {
      let newTrip = new Trip(trip)
-     $('#show-trip').append(newTrip.postShowHTML())
-
+     console.log(newTrip)
+     $('#trip-details').append(newTrip.postShowHTML())
    });
  });
 };
@@ -48,13 +46,10 @@ function newTripForm() {
   $("#new_trip").on("submit", function(event){
     event.preventDefault()
    const values = $(this).serialize()
-
    $.post("/trips", values)
    .done(function(data) {
-
      $("#app-container").html("")
     const newTrip = new Trip(data)
-
     $("#app-container").html(newTrip.postShowHTML())
    });
  });
@@ -88,14 +83,14 @@ Trip.prototype.postHTML = function () {
 }
 
 Trip.prototype.postShowHTML = function () {
+// const activity = this.activities.forEach((activity) => {activity.name});
+const activity = this.activities.map(activity => activity.name);
+
 
   return `<div>
-        <p>Description ${this.description}
-        <p>Start date ${this.start_date}</p>
-        <p>End date ${this.end_date}</p>
-
-
-
-
+        <p>Description -  ${this.description}
+        <p>Start date -  ${this.start_date}</p>
+        <p>End date -  ${this.end_date}</p>
+        <p>Activities - ${activity} </p>
         </div>`
 }
