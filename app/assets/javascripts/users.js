@@ -3,6 +3,7 @@
 $(document).ready(function() { 
   console.log("this is loaded")
    indexClickListener()
+   alphaClickListener()
    showClickListener()
    newTripForm()
 
@@ -14,13 +15,22 @@ function Trip(obj){
     this.start_date = obj.start_date
     this.end_date = obj.end_date
     this.activities = obj.activities
-    // this.activity = obj.activities.map((activity) => {activity.name});
+
 }
 
 function indexClickListener() {
   $("button.get-trips").on("click", function(event){
     event.preventDefault()
     getTrips()
+  })
+
+};
+
+function alphaClickListener() {
+  $("button.sorted-trips").on("click", function(event){
+    event.preventDefault()
+
+    getTripsAlphabetically()
   })
 
 };
@@ -71,6 +81,32 @@ function getTrips() {
   });
 };
 
+function getTripsAlphabetically() {
+  $.ajax({
+    url: "http://localhost:3000/trips",
+    method: "get",
+    dataType: "json"
+  }).done(function(trips){
+    trips.sort(function(a,b){
+      var nameA = a.description.toUpperCase();
+      var nameB = b.description.toUpperCase();
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+        return 0;
+    });
+
+    trips.forEach(function(trip){
+      let newTrip = new Trip(trip)
+      $('#post-trips').append(newTrip.postHTML())
+
+    })
+  });
+};
+
 
 
 Trip.prototype.postHTML = function () {
@@ -83,7 +119,6 @@ Trip.prototype.postHTML = function () {
 }
 
 Trip.prototype.postShowHTML = function () {
-// const activity = this.activities.forEach((activity) => {activity.name});
 const activity = this.activities.map(activity => activity.name);
 
 

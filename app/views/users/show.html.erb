@@ -1,4 +1,5 @@
-<h1>Hi <%= @user.name %>, welcome to your travel planner</h1>
+<h1>Hi <%= @user.name %>
+  , welcome to your travel planner</h1>
 <h3> Let's get started by adding a trip:  <%= link_to "add a trip", new_trip_path %> </h3><br>
 
 
@@ -8,11 +9,4 @@
 <div id="trip-details">
 </div>
 
-<!-- <div id='post-trips'>
-    <div tripId={this.id}>
-    <p></p>
-        <div id='trip-details'>
-            <p></p>
-        </div>
-    </div>
-</div> -->
+<button class="sorted-trips">List of all your trips alphapbetically</button>
